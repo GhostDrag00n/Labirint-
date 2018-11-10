@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da61a9be2fa5a44ca83ac88b197faff7, type: 3}
+  m_Name: Dialogue 3
+  m_EditorClassIdentifier: 
+  nextDialogue: {fileID: 11400000}
+  previousDialogue: {fileID: 11400000, guid: 0088306a8883f4c14812cfa75860c514, type: 2}
+  name: Name 3
+  type: 0
+  reqiredItem: {fileID: 1035451507887092, guid: d34b43086c14c4d9ca5ed246ac215fdb,
+    type: 2}
+  sentences:
+  - dialogue3
+  LoopDialogue: {fileID: 0}
