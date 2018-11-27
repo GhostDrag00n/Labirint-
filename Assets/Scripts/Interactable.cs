@@ -13,15 +13,20 @@ public abstract class Interactable : MonoBehaviour{
 
     public bool isActivated = false;
 
+    private void Start()
+    {
+        //ActivateButton = GameObject.FindWithTag("ActivateButton").GetComponent<Button>();
+    }
+
     //private void OnTriggerEnter(Collider hit)
     //{
-        //if(hit.tag == "Player")
-        //{
-        //    ActivateButton.gameObject.SetActive(true);
-        //    ActivateButton.onClick.RemoveAllListeners();
-        //    ActivateButton.onClick.AddListener(Activate);
-        //    //Activate();
-        //}
+    //if(hit.tag == "Player")
+    //{
+    //    ActivateButton.gameObject.SetActive(true);
+    //    ActivateButton.onClick.RemoveAllListeners();
+    //    ActivateButton.onClick.AddListener(Activate);
+    //    //Activate();
+    //}
     //}
 
     private void OnTriggerStay(Collider hit)
@@ -36,9 +41,11 @@ public abstract class Interactable : MonoBehaviour{
     {
         if (hit.tag == "Player")
         {
-            ActivateButton.onClick.AddListener(DeActivate);
+            //DeActivate();
+            //ActivateButton.onClick.AddListener(DeActivate);
             ActivateButton.gameObject.SetActive(false);
             isActivated = !isActivated;
+            DeActivate();
         }
     }
 
@@ -50,6 +57,15 @@ public abstract class Interactable : MonoBehaviour{
         ActivateButton.onClick.AddListener(Activate);
     }
 
+    public void OnDestroy()
+    {
+        if (ActivateButton != null)
+        {
+            ActivateButton.onClick.RemoveAllListeners();
+            ActivateButton.gameObject.SetActive(false);
+        }
+        isActivated = !isActivated;
+    }
 
 
 }

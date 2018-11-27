@@ -14,7 +14,7 @@ public class Dialogue : ScriptableObject{
     }
 
     public Dialogue nextDialogue;
-    public Dialogue RestartLDialogue;
+    public Dialogue LoopDialogue;
     //public Dialogue previousDialogue;
 
 	public new string name;
@@ -23,5 +23,5 @@ public class Dialogue : ScriptableObject{
 
 	[TextArea(3, 10)]
 	public string[] sentences;
-    public Dialogue LoopDialogue;
+
 }

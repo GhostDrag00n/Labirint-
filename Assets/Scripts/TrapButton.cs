@@ -20,7 +20,6 @@ public class TrapButton : Interactable
     public override void Activate()
     {
         StartCoroutine(ShowThenHide(traps, timeToShow));
-
     }
 
     public override void DeActivate()
@@ -34,7 +33,7 @@ public class TrapButton : Interactable
         {
             if (go.GetComponent<Trap>().isSafe)
                 go.GetComponent<Animator>().SetBool("isActive", false);
-        }
+        }   
 
         yield return new WaitForSeconds(t);
         foreach(GameObject go in traps)

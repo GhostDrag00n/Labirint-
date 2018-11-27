@@ -15,13 +15,11 @@ public class pickUp : Interactable
     public override void Activate()
     {
         PC.PickedUpItems.Add(item.id);
-        this.gameObject.SetActive(false);
-        DeActivate();
-    }
+        Destroy(this.gameObject);
+    }   
 
     public override void DeActivate()
     {
-        ActivateButton.gameObject.SetActive(false);
-        isActivated = !isActivated;
+        
     }
 }

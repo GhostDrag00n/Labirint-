@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da61a9be2fa5a44ca83ac88b197faff7, type: 3}
-  m_Name: Dialogue
+  m_Name: Dialogue 1.5
   m_EditorClassIdentifier: 
-  nextDialogue: {fileID: 11400000, guid: 364ae376c28094f76869b2a2c7b9ba17, type: 2}
-  previousDialogue: {fileID: 0}
-  name: Name 1
+  nextDialogue: {fileID: 11400000, guid: 0088306a8883f4c14812cfa75860c514, type: 2}
+  RestartLDialogue: {fileID: 0}
+  name: Name 2
   type: 0
-  reqiredItem: {fileID: 0}
+  reqiredItemId: 0
   sentences:
-  - dialogue
+  - dialogue 1/5
   LoopDialogue: {fileID: 0}

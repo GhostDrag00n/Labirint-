@@ -6,7 +6,7 @@ public class DialogueTrigger : Interactable
     [HideInInspector]
     public DialogueCore DC;
 
-    public Dialogue dialogue;
+    //public Dialogue dialogue;
     public Button DialogueContinue;
     public DialogueManager DM;
 
@@ -24,7 +24,7 @@ public class DialogueTrigger : Interactable
         {
             dialogueEnd = !dialogueEnd;
             ActivateButton.gameObject.SetActive(true);
-            Debug.Log(ActivateButton.onClick.GetPersistentEventCount());
+            //Debug.Log(ActivateButton.onClick.GetPersistentEventCount());
         }
     }
 
@@ -39,6 +39,9 @@ public class DialogueTrigger : Interactable
 
     public override void DeActivate()
     {
+        Debug.Log("Exiting");
+        Debug.Log(DM.LoopStart.sentences[0]);
+        DM.currentDialogue = DM.LoopStart;
         DialogueContinue.onClick.RemoveAllListeners();
     }
 

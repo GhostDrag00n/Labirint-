@@ -6,23 +6,54 @@ using System;
 public class DialogueManager : MonoBehaviour
 {
 
-    public Dialogue[] dialogues;
+    //public Dialogue[] dialogues;
     public GameObject player;
     public Dialogue currentDialogue;
     private Dialogue nextDialogue;
+    private Dialogue LoopDialogue;
+    [HideInInspector]
+    public Dialogue LoopStart;
     private int dialogueIndex;
+    private PlayerController pc;
 
     private void Start()
     {
+        pc = player.GetComponent<PlayerController>();
         nextDialogue = currentDialogue;
         dialogueIndex = 0;
     }
 
     public Dialogue GetDialogue()
     {
-        
-        Dialogue d = new Dialogue();
-        return d;
+        if (currentDialogue.type == Dialogue.NodeType.ContinuesDialogue)
+        {
+            Debug.Log("I am here");
+            //nextDialogue = currentDialogue.nextDialogue;
+            currentDialogue = nextDialogue.nextDialogue;
+            nextDialogue = currentDialogue;
+            return currentDialogue;
+        }
+        else if (currentDialogue.type == Dialogue.NodeType.ItemReqired)
+        {
+            if (pc.PickedUpItems.Contains(currentDialogue.reqiredItemId))
+            {
+                currentDialogue = nextDialogue.nextDialogue;
+                nextDialogue = currentDialogue;
+                return currentDialogue;
+                LoopStart = null;
+            }
+            else
+            {
+                //LoopDialogue = currentDialogue.LoopDialogue;
+                //nextDialogue = currentDialogue.LoopDialogue;
+                currentDialogue = currentDialogue.LoopDialogue;
+                LoopStart = currentDialogue;
+                nextDialogue = currentDialogue;
+                return currentDialogue;
+            }
+        }
+
+        return currentDialogue;
     }
 }
 

@@ -82,7 +82,7 @@ public class DialogueCore : MonoBehaviour {
         isDialogueEnded = true;
         nameText.text = "";
         dialogueText.text = "";
-        Debug.Log("Dialogue end");
+        //Debug.Log("Dialogude end");
         for (int i = 0; i < UIElementsToDisable.Length; i++)
         {
             if (UIElementsToEnable[i] == true)

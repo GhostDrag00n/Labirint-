@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ico: {fileID: 0}
   name: Stone
-  id: 0
+  id: 1
