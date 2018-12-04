@@ -14,3 +14,4 @@ MonoBehaviour:
   ico: {fileID: 0}
   name: Stone
   id: 1
+  renderMaterial: {fileID: 2100000, guid: ba43135371871544599a0c669dbc73be, type: 3}

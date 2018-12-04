@@ -10,6 +10,7 @@ public class pickUp : Interactable
     private void Start()
     {
         PC = FindObjectOfType<PlayerController>();
+        this.GetComponent<MeshRenderer>().material = item.renderMaterial;
     }
 
     public override void Activate()

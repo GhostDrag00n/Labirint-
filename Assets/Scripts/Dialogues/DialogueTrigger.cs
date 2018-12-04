@@ -14,6 +14,7 @@ public class DialogueTrigger : Interactable
 
     public void Start()
     {
+        dialogueEnd = false;    
         DC = FindObjectOfType<DialogueCore>();
         DM = GetComponent<DialogueManager>();
     }

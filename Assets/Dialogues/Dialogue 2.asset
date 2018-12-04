@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: Dialogue 2
   m_EditorClassIdentifier: 
   nextDialogue: {fileID: 11400000, guid: 17cf66b653baa46a28533b7ff420baf5, type: 2}
-  LoopDialogue: {fileID: 11400000, guid: 364ae376c28094f76869b2a2c7b9ba17, type: 2}
+  LoopDialogue: {fileID: 11400000}
   name: Name 3
   type: 1
   reqiredItemId: 1
   sentences:
-  - 'dialogue2 '
+  - dialogue 4, stone needed

@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Name: Dialogue 3
   m_EditorClassIdentifier: 
   nextDialogue: {fileID: 11400000}
-  RestartLDialogue: {fileID: 0}
+  LoopDialogue: {fileID: 0}
   name: Name 3
   type: 0
   reqiredItemId: 0
   sentences:
-  - dialogue3
-  LoopDialogue: {fileID: 0}
+  - You bring the stone

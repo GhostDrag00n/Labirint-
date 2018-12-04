@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Name: Dialogue 1.5
   m_EditorClassIdentifier: 
   nextDialogue: {fileID: 11400000, guid: 0088306a8883f4c14812cfa75860c514, type: 2}
-  RestartLDialogue: {fileID: 0}
+  LoopDialogue: {fileID: 0}
   name: Name 2
   type: 0
   reqiredItemId: 0
   sentences:
-  - dialogue 1/5
-  LoopDialogue: {fileID: 0}
+  - dialogue 3

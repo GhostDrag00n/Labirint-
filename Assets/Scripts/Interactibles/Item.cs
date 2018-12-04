@@ -9,4 +9,5 @@ public class Item : ScriptableObject {
     public Image ico;
     public new string name;
     public int id;
+    public Material renderMaterial;
 }
