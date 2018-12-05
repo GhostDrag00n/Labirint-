@@ -24,10 +24,18 @@ public class LookingForPlayer : Base_FSM
                 currentWP++;
                 if (currentWP >= points.Length)
                 {
-                    animator.SetBool("PlayerLost", true);
+                    animator.SetBool("PlayerFound", false);
+                    return;
                 }
             }
         }
+
+        if (animator.GetFloat("Distance") < 2.5)
+        {
+            animator.SetBool("PlayerFound", true);
+        }
+        Vector3 dirToPlayer = Enemy.transform.position - player.transform.position;
+        points[currentWP] += dirToPlayer;
         Enemy.GetComponent<Enemy_AI>().MoveTo(points[currentWP]);
     }
 

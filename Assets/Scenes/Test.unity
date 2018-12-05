@@ -1093,6 +1093,7 @@ MonoBehaviour:
   Home: {fileID: 1601685042}
   NumberOfPoints: 3
   LookingRadius: 5
+  height: 0
   agent: {fileID: 198062985}
   character: {fileID: 198062986}
 --- !u!4 &198062984
@@ -1120,7 +1121,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.26
-  m_Speed: 0.2
+  m_Speed: 1
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 90
@@ -6126,6 +6127,7 @@ MonoBehaviour:
   Home: {fileID: 1601685042}
   NumberOfPoints: 3
   LookingRadius: 2
+  height: 0
   agent: {fileID: 1287081692}
   character: {fileID: 1287081695}
 --- !u!4 &1307000720 stripped

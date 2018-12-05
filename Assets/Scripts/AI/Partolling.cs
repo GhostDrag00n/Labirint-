@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class Partolling : Base_FSM
 {
-    
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
+
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+        animator.SetBool("PlayerFound", false);
+
     }
 
-   
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
+
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Enemy.GetComponent<Enemy_AI>().MoveToHome();
+        //Patrolling
+
+
+        if (animator.GetFloat("Distance") < 5)
+        {
+            animator.SetBool("PlayerFound", true);       
+        }
     }
 
-   
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-    
+        
     }
 
 }

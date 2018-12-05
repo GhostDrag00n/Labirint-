@@ -7,6 +7,8 @@ public class Base_FSM : StateMachineBehaviour
     public GameObject Enemy;
     public GameObject player;
 
+    public float height;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Enemy = animator.gameObject.transform.GetChild(0).gameObject;

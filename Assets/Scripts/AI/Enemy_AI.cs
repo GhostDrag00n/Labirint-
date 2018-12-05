@@ -10,6 +10,9 @@ public class Enemy_AI : MonoBehaviour {
     public int NumberOfPoints;
     public float LookingRadius;
 
+    [HideInInspector]
+    public float height;
+
     public NavMeshAgent agent;
 
     public ThirdPersonCharacter character;
@@ -32,9 +35,9 @@ public class Enemy_AI : MonoBehaviour {
         if (agent.remainingDistance > agent.stoppingDistance)
         {
             character.Move(agent.desiredVelocity, false, false);
-            GameObject gm = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            gm.GetComponent<BoxCollider>().isTrigger = true;
-            Instantiate(gm, position, Quaternion.identity);
+            //GameObject gm = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //gm.GetComponent<BoxCollider>().isTrigger = true;
+            //Instantiate(gm, position, Quaternion.identity);
         }
         else
         {
@@ -68,5 +71,9 @@ public class Enemy_AI : MonoBehaviour {
         return points;
     }
 
+    public float GetHeight()
+    {
+        return anim.gameObject.transform.position.z;
+    }
 
 }
