@@ -5,28 +5,28 @@ using UnityEngine;
 public class LookingForPlayer : Base_FSM
 {
     Vector3[] points;
+    Vector3 currentPoint;
+    int NumberOfPoints;
     int currentWP;
+    Enemy_AI AI;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         currentWP = 0;
-        points = Enemy.GetComponent<Enemy_AI>().LookForPlayer();
+        points = AI.LookForPlayer();
+        AI = Enemy.GetComponent<Enemy_AI>();
     }
 
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (points != null)
+        if (currentWP != NumberOfPoints)
         {
-            if (Vector3.Distance(points[currentWP], Enemy.transform.position) < .5f)
+            if (Vector3.Distance(currentPoint, Enemy.transform.position) < .5f)
             {
                 currentWP++;
-                if (currentWP >= points.Length)
-                {
-                    animator.SetBool("PlayerFound", false);
-                    return;
-                }
+                AI.RandomPoint(Enemy.transform.position, AI.LookingRadius,out currentPoint);
             }
         }
 
@@ -34,9 +34,10 @@ public class LookingForPlayer : Base_FSM
         {
             animator.SetBool("PlayerFound", true);
         }
-        Vector3 dirToPlayer = Enemy.transform.position - player.transform.position;
-        points[currentWP] += dirToPlayer;
-        Enemy.GetComponent<Enemy_AI>().MoveTo(points[currentWP]);
+        //Vector3 dirToPlayer = Enemy.transform.position - player.transform.position;
+        //points[currentWP] += dirToPlayer;
+        //Enemy.GetComponent<Enemy_AI>().MoveTo(points[currentWP]);
+
     }
 
 
