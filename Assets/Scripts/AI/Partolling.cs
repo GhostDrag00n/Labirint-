@@ -15,7 +15,7 @@ public class Partolling : Base_FSM
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Enemy.GetComponent<Enemy_AI>().MoveToHome();
+        AI.MoveTo(AI.Home.transform.position);
         //Patrolling
 
 

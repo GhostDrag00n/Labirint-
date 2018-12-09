@@ -5,10 +5,12 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class Enemy_AI : MonoBehaviour {
 
     public Animator anim;
-    public GameObject player;
+    public GameObject Player;
     public GameObject Home;
     public int NumberOfPoints;
     public float LookingRadius;
+
+    public GameObject cyl;
 
     [HideInInspector]
     public float height;
@@ -17,47 +19,48 @@ public class Enemy_AI : MonoBehaviour {
 
     public ThirdPersonCharacter character;
 
+    private void Start()
+    {
+        agent.updateRotation = false;
+    }
 
     public GameObject GetPlayer()
     {
-        agent.updateRotation = false;
-        return player;
+        return Player;
     }
 
     private void Update()
     {
-        anim.SetFloat("Distance", Vector3.Distance(this.transform.position, player.transform.position));
+        anim.SetFloat("Distance", Vector3.Distance(this.transform.position, Player.transform.position));
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                //agent.SetDestination(hit.point);
+                MoveTo(hit.point);
+            }
+        }
+
+        if (agent.remainingDistance > agent.stoppingDistance)
+        {
+            character.Move(agent.desiredVelocity, false, false);
+        }
+        else
+        {
+            character.Move(Vector3.zero, false, false);
+            MoveTo(this.transform.position);
+
+        }
     }
 
     public void MoveTo(Vector3 position)
     {
         agent.SetDestination(position);
-        if (agent.remainingDistance > agent.stoppingDistance)
-        {
-            character.Move(agent.desiredVelocity, false, false);
-            //GameObject gm = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            //gm.GetComponent<BoxCollider>().isTrigger = true;
-            //Instantiate(gm, position, Quaternion.identity);
-        }
-        else
-        {
-            character.Move(Vector3.zero, false, false);
-
-        }
-    }
-
-    public void MoveToHome()
-    {
-        agent.SetDestination(Home.transform.position);
-        if (agent.remainingDistance > agent.stoppingDistance)
-        {
-            character.Move(agent.desiredVelocity, false, false);
-        }
-        else
-        {
-            character.Move(Vector3.zero, false, false);
-
-        }
     }
 
     public Vector3[] LookForPlayer()
@@ -85,6 +88,7 @@ public class Enemy_AI : MonoBehaviour {
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
                 result = hit.position;
+                cyl.transform.position = hit.position;
                 return true;
             }
         }
@@ -92,4 +96,16 @@ public class Enemy_AI : MonoBehaviour {
         return false;
     }
 
+    public Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * distance;
+
+        randomDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
+
+        return navHit.position;
+    }
 }
