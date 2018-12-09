@@ -33,6 +33,7 @@ public class Enemy_AI : MonoBehaviour {
     {
         anim.SetFloat("Distance", Vector3.Distance(this.transform.position, Player.transform.position));
 
+        //MoveTo(cyl.transform.position);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -61,22 +62,7 @@ public class Enemy_AI : MonoBehaviour {
     public void MoveTo(Vector3 position)
     {
         agent.SetDestination(position);
-    }
-
-    public Vector3[] LookForPlayer()
-    {
-        Vector3[] points = new Vector3[NumberOfPoints];
-        for (int i = 0; i < NumberOfPoints; i++)
-        {
-            points[i].x = this.transform.position.x + Random.Range(-LookingRadius, LookingRadius);
-            points[i].y = this.transform.position.y + Random.Range(-LookingRadius, LookingRadius);
-        }
-        return points;
-    }
-
-    public float GetHeight()
-    {
-        return anim.gameObject.transform.position.z;
+        cyl.transform.position = position;
     }
 
     public bool RandomPoint(Vector3 center, float range, out Vector3 result)
@@ -88,7 +74,6 @@ public class Enemy_AI : MonoBehaviour {
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
                 result = hit.position;
-                cyl.transform.position = hit.position;
                 return true;
             }
         }
@@ -96,7 +81,7 @@ public class Enemy_AI : MonoBehaviour {
         return false;
     }
 
-    public Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
+    public Vector3 RandomNavSphere(Vector3 origin, float distance)
     {
         Vector3 randomDirection = Random.insideUnitSphere * distance;
 
@@ -104,8 +89,14 @@ public class Enemy_AI : MonoBehaviour {
 
         NavMeshHit navHit;
 
-        NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
+        NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);
 
         return navHit.position;
+    }
+
+    public Vector3 RandomPosition(Vector3 origin, float distance)
+    {
+        Vector3 dirPos = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
+        return dirPos;
     }
 }

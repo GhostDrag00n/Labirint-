@@ -21,29 +21,28 @@ public class LookingForPlayer : Base_FSM
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //if (currentWP != numberofpoints+1)
-        //{
-        //    if (Vector3.Distance(currentPoint, Enemy.transform.position) < AI.agent.stoppingDistance)
-        //    {
-        //        currentWP++;
-        //        //AI.RandomPoint(Enemy.transform.position, AI.LookingRadius,out currentPoint);
-        //        currentPoint = AI.RandomNavSphere(Enemy.transform.position, AI.LookingRadius, -1);
-        //    }
-        //}
-
-        if (Vector3.Distance(Enemy.transform.position, currentPoint) < AI.agent.stoppingDistance)
+        if (currentWP != numberofpoints)
         {
-            AI.RandomPoint(Enemy.transform.position, AI.LookingRadius,out currentPoint);
-            AI.MoveTo(currentPoint);
+            if (Vector3.Distance(Enemy.transform.position, currentPoint) < AI.agent.stoppingDistance)
+            {
+                currentWP++;
+                //AI.RandomPoint(Enemy.transform.position, AI.LookingRadius, out currentPoint);
+                //currentPoint = AI.RandomNavSphere(Enemy.transform.position, AI.LookingRadius);
+                currentPoint = AI.RandomPosition(Enemy.transform.position, AI.LookingRadius);
+                AI.MoveTo(currentPoint);
+            }
+            if (currentWP == numberofpoints)
+            {
+                animator.SetBool("PlayerFound", false);
+            }
         }
+        currentPoint = AI.RandomPosition(Enemy.transform.position, AI.LookingRadius);
         currentPoint.y = Enemy.transform.position.y;
+        AI.MoveTo(currentPoint);
         if (animator.GetFloat("Distance") < 2.5)
         {
             animator.SetBool("PlayerFound", true);
         }
-        //Vector3 dirToPlayer = Enemy.transform.position - player.transform.position;
-        //points[currentWP] += dirToPlayer;
-        //Enemy.GetComponent<Enemy_AI>().MoveTo(points[currentWP]);
 
     }
 
