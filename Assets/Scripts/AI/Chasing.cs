@@ -15,9 +15,13 @@ public class Chasing : Base_FSM
     {
         Enemy.GetComponent<Enemy_AI>().MoveTo(player.transform.position);
 
-        if (animator.GetFloat("Distance") > 5)
+        if (animator.GetFloat("Distance") < AI.AttackingRadius)
         {
-            
+            animator.SetBool("Attacking", true);
+        }
+        if (animator.GetFloat("Distance") > AI.LookingRadius)
+        {
+            animator.SetBool("PlayerFound", false);
         }
     }
 

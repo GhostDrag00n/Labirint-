@@ -13,7 +13,7 @@ public class LookingForPlayer : Base_FSM
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         currentWP = 0;
-        numberofpoints = AI.NumberOfPoints;
+        //numberofpoints = AI.NumberOfPoints;
         currentPoint = Enemy.transform.position;
         AI.MoveTo(currentPoint);
     }
@@ -21,24 +21,23 @@ public class LookingForPlayer : Base_FSM
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (currentWP != numberofpoints)
-        {
-            if (Vector3.Distance(Enemy.transform.position, currentPoint) < AI.agent.stoppingDistance)
-            {
-                currentWP++;
-                //AI.RandomPoint(Enemy.transform.position, AI.LookingRadius, out currentPoint);
-                //currentPoint = AI.RandomNavSphere(Enemy.transform.position, AI.LookingRadius);
-                currentPoint = AI.RandomPosition(Enemy.transform.position, AI.LookingRadius);
-                AI.MoveTo(currentPoint);
-            }
-            if (currentWP == numberofpoints)
-            {
-                animator.SetBool("PlayerFound", false);
-            }
-        }
-        currentPoint = AI.RandomPosition(Enemy.transform.position, AI.LookingRadius);
         currentPoint.y = Enemy.transform.position.y;
-        AI.MoveTo(currentPoint);
+        //if (currentWP != numberofpoints)
+        //{
+        if (Vector3.Distance(currentPoint, Enemy.transform.position) < 1.3f)
+        {
+            Debug.Log("NewPosition");
+            //currentPoint = AI.RandomPosition(Enemy.transform.position, AI.LookingRadius);
+            AI.MoveTo(currentPoint);
+        }
+        //}
+        //else
+        //{
+        //    animator.SetBool("PlayerFound", false);
+        //}
+        //currentPoint = AI.RandomPosition(Enemy.transform.position, AI.LookingRadius);
+        //currentPoint.y = Enemy.transform.position.y;
+        //AI.MoveTo(currentPoint);
         if (animator.GetFloat("Distance") < 2.5)
         {
             animator.SetBool("PlayerFound", true);

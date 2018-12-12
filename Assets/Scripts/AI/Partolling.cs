@@ -8,7 +8,6 @@ public class Partolling : Base_FSM
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        animator.SetBool("PlayerFound", false);
 
     }
 
@@ -19,7 +18,7 @@ public class Partolling : Base_FSM
         //Patrolling
 
 
-        if (animator.GetFloat("Distance") < 5)
+        if (animator.GetFloat("Distance") < AI.LookingRadius)
         {
             animator.SetBool("PlayerFound", true);       
         }

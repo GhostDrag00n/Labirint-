@@ -4,23 +4,36 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Enemy_AI : MonoBehaviour {
 
+    public Enemy_SO enemyStats;
+
     public Animator anim;
     public GameObject Player;
     public GameObject Home;
-    public int NumberOfPoints;
-    public float LookingRadius;
-
-    public GameObject cyl;
 
     [HideInInspector]
-    public float height;
+    public float PatrollinRadius, LookingRadius, AttackingRadius, attackRate;
+
+    [HideInInspector]
+    public int Enemy_AT, Enemy_HP;
+
+    public GameObject cyl;
 
     public NavMeshAgent agent;
 
     public ThirdPersonCharacter character;
 
+    PlayerController PC;
+
     private void Start()
     {
+        PatrollinRadius = enemyStats.PatrollingRadius;
+        LookingRadius = enemyStats.LookingRadius;
+        AttackingRadius = enemyStats.AttackingRadius;
+        attackRate = enemyStats.AttackRate;
+        Enemy_AT = enemyStats.Enemy_AT;
+        Enemy_HP = enemyStats.Enemy_HP;
+
+        PC = Player.GetComponent<PlayerController>();
         agent.updateRotation = false;
     }
 
@@ -65,38 +78,18 @@ public class Enemy_AI : MonoBehaviour {
         cyl.transform.position = position;
     }
 
-    public bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    public void Attack()
     {
-        for (int i = 0; i < 30; i++)
-        {
-            Vector3 randomPoint = center + Random.insideUnitSphere * range;
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-            {
-                result = hit.position;
-                return true;
-            }
-        }
-        result = Vector3.zero;
-        return false;
+        PC.TakeDamage(Enemy_AT);
+        //Debug.Log("Attacked");
     }
 
-    public Vector3 RandomNavSphere(Vector3 origin, float distance)
+    void OnDrawGizmosSelected()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * distance;
-
-        randomDirection += origin;
-
-        NavMeshHit navHit;
-
-        NavMesh.SamplePosition(randomDirection, out navHit, distance, -1);
-
-        return navHit.position;
-    }
-
-    public Vector3 RandomPosition(Vector3 origin, float distance)
-    {
-        Vector3 dirPos = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
-        return dirPos;
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, LookingRadius);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, AttackingRadius);
     }
 }
