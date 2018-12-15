@@ -27,6 +27,10 @@ public class DialogueTrigger : Interactable
             ActivateButton.gameObject.SetActive(true);
             //Debug.Log(ActivateButton.onClick.GetPersistentEventCount());
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log(DM.currentDialogue.name);
+        }
     }
 
     public override void Activate()
@@ -41,18 +45,8 @@ public class DialogueTrigger : Interactable
     public override void DeActivate()
     {
         Debug.Log("Exiting");
-        Debug.Log(DM.LoopStart.sentences[0]);
-        DM.currentDialogue = DM.LoopStart;
+        //Debug.Log(DM.LoopStart.sentences[0]);
+        //DM.currentDialogue = DM.LoopStart;
         DialogueContinue.onClick.RemoveAllListeners();
     }
-
-
-    //public override void StayActivate()
-    //{
-    //    ActivateButton.gameObject.SetActive(true);
-        //if(DC.isDialogueEnded)
-        //{
-        //    Activate();
-        //}
-    //}
 }

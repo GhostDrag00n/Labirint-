@@ -3,56 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public static PlayerController instance;
 
-    public int health;
-    int currentHealth;
-    public float invincibleTime;
-    bool isLerping = true;
-
-    #region
-    public float SliderSmoothnes;
-    public Image Health;
-    public Image HealthSlider;
-    #endregion
-
-    float timer = 0;
+#region
+    public float AttackRate;
+    public int Damage;
+#endregion
 
     public List<int> PickedUpItems;
 
+    public HealthManager HM;
+
+    public Button AttackButton;
+
+    public AttackCube AC;
+
+    float timer;
+
     private void Start()
     {
-        currentHealth = health;
         PickedUpItems = new List<int>();
     }
 
     private void Update()
     {
-        if (isLerping)
+        timer += Time.deltaTime; 
+
+        if (Input.GetKeyDown(KeyCode.H))
         {
-            HealthSlider.fillAmount = Mathf.Lerp(HealthSlider.fillAmount, Health.fillAmount, SliderSmoothnes * Time.deltaTime);
-            if ((HealthSlider.fillAmount - Health.fillAmount) < Mathf.Epsilon)
+            Debug.Log(HM.Health);
+        }
+        if (HM.Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        GetComponent<Animator>().SetBool("DeathTrigger", true);
+        Debug.Log("Player dead");
+    }
+
+    public void Attack()
+    {
+        //Play attacking animation
+        if (timer >= AttackRate)
+        {
+            timer = 0f;
+            if (AC.CanAttack)
             {
-                isLerping = false;
+                AC.HM.TakeDamage(Damage);
             }
         }
-
     }
-
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        Health.fillAmount -= (float)damage / 100f;
-        HealthSlider.fillAmount = Mathf.Lerp(HealthSlider.fillAmount, Health.fillAmount, Time.deltaTime);
-        isLerping = true;
-    }
-
-
-    //IEnumerator Slide(out float f, float a, float b, float t)
-    //{
-    //    f = Mathf.Lerp(a, b, t);
-    //    yield return new WaitForSeconds(t);
-    //}
 }

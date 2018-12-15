@@ -27,14 +27,14 @@ public class Plate : MonoBehaviour
         switch (PlateType)
         {
             case plType.Light:
-                if (hit.tag == "Draggable" || hit.tag == "PlayerBody" || hit.tag == "Heavy")
+                if (hit.tag == "Draggable" || hit.tag == "PlayerBody" || hit.tag == "Heavy" || hit.tag == "AI")
                 {
                     ObjectToActivate.GetComponent<PlateActivator>().Activate();
                 }
                 break;
 
             case plType.LightStatic:
-                if (hit.tag == "Draggable" || hit.tag == "PlayerBody" || hit.tag == "Heavy")
+                if (hit.tag == "Draggable" || hit.tag == "PlayerBody" || hit.tag == "Heavy" || hit.tag == "AI")
                 {
                     ObjectToActivate.GetComponent<PlateActivator>().Activate();
                 }
@@ -61,7 +61,7 @@ public class Plate : MonoBehaviour
         switch (PlateType)
         {
             case plType.Light:
-                if (hit.tag == "Draggable" || hit.tag == "PlayerBody" || hit.tag == "Heavy")
+                if (hit.tag == "Draggable" || hit.tag == "PlayerBody" || hit.tag == "Heavy" || hit.tag == "AI")
                 {
                     ObjectToActivate.GetComponent<PlateActivator>().DeActivate();
                 }

@@ -9,6 +9,7 @@ public class Enemy_AI : MonoBehaviour {
     public Animator anim;
     public GameObject Player;
     public GameObject Home;
+    public AttackCube AC;
 
     [HideInInspector]
     public float PatrollinRadius, LookingRadius, AttackingRadius, attackRate;
@@ -22,7 +23,11 @@ public class Enemy_AI : MonoBehaviour {
 
     public ThirdPersonCharacter character;
 
-    PlayerController PC;
+    public HealthManager HM;
+
+
+
+    float timer; 
 
     private void Start()
     {
@@ -33,7 +38,6 @@ public class Enemy_AI : MonoBehaviour {
         Enemy_AT = enemyStats.Enemy_AT;
         Enemy_HP = enemyStats.Enemy_HP;
 
-        PC = Player.GetComponent<PlayerController>();
         agent.updateRotation = false;
     }
 
@@ -44,21 +48,34 @@ public class Enemy_AI : MonoBehaviour {
 
     private void Update()
     {
+        if (Player == null)
+        {
+            anim.SetFloat("Distance", 1000f);
+            return;
+        }
+        if (HM.Health <= 0)
+        {
+            Die();
+        }
+
         anim.SetFloat("Distance", Vector3.Distance(this.transform.position, Player.transform.position));
 
         //MoveTo(cyl.transform.position);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                //agent.SetDestination(hit.point);
-                MoveTo(hit.point);
-            }
-        }
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
+        //        //agent.SetDestination(hit.point);
+        //        MoveTo(hit.point);
+        //    }
+        //}
+
+        timer += Time.deltaTime;
+
 
         if (agent.remainingDistance > agent.stoppingDistance)
         {
@@ -80,7 +97,15 @@ public class Enemy_AI : MonoBehaviour {
 
     public void Attack()
     {
-        PC.TakeDamage(Enemy_AT);
+        //Play attack animation
+        if (timer > attackRate)
+        {
+            timer = 0f;
+            if (AC.CanAttack)
+            {
+                Player.GetComponent<HealthManager>().TakeDamage(Enemy_AT);
+            }
+        }
         //Debug.Log("Attacked");
     }
 
@@ -91,5 +116,11 @@ public class Enemy_AI : MonoBehaviour {
         Gizmos.DrawWireSphere(transform.position, LookingRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, AttackingRadius);
+    }
+
+    void Die()
+    {
+        GetComponent<Animator>().SetBool("DeathTrigger", true);
+        Debug.Log("AI dead");
     }
 }

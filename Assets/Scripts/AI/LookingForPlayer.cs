@@ -7,12 +7,12 @@ public class LookingForPlayer : Base_FSM
     Vector3[] points;
     Vector3 currentPoint;
     int numberofpoints;
-    int currentWP;
+    //int currentWP;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
-        currentWP = 0;
+        //currentWP = 0;
         //numberofpoints = AI.NumberOfPoints;
         currentPoint = Enemy.transform.position;
         AI.MoveTo(currentPoint);

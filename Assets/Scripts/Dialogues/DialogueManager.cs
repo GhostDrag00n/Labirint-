@@ -13,14 +13,14 @@ public class DialogueManager : MonoBehaviour
     private Dialogue LoopDialogue;
     [HideInInspector]
     public Dialogue LoopStart;
-    private int dialogueIndex;
+    //private int dialogueIndex;
     private PlayerController pc;
 
     private void Start()
     {
         pc = player.GetComponent<PlayerController>();
         nextDialogue = currentDialogue;
-        dialogueIndex = 0;
+        //dialogueIndex = 0;
     }
 
     public Dialogue GetDialogue()
@@ -40,7 +40,7 @@ public class DialogueManager : MonoBehaviour
                 currentDialogue = nextDialogue.nextDialogue;
                 nextDialogue = currentDialogue;
                 return currentDialogue;
-                LoopStart = null;
+                //LoopStart = null;
             }
             else
             {

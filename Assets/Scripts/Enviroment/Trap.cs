@@ -5,21 +5,43 @@ using UnityEngine;
 public class Trap : MonoBehaviour {
 
     public bool isSafe;
+    public int damage;
+    public float TimeBetweenAttacks;
     public Animator animator;
-    public GameObject Trigger;
-    public GameObject player;
 
-    private void Start()
-    {
-        player = GameObject.FindWithTag("PlayerBody");
-    }
+    float timer;
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.tag == "PlayerBody" && (animator.GetBool("isActive") || false && isSafe == false))
+        if (animator.GetBool("isActive") == false)
         {
             animator.SetBool("isActive", true);
-            Destroy(hit.gameObject);
+            Attack(hit, damage);
+        }
+        if (animator.GetBool("isActive") == true)
+        {
+            animator.SetBool("isActive", false);
+            animator.SetBool("isActive", true);
+            Attack(hit, damage);
+        }
+    }
+
+    private void OnTriggerStay(Collider hit)
+    {
+        if (timer >= TimeBetweenAttacks)
+        {
+            timer = 0f;
+            Attack(hit, damage);
+        }
+        timer += Time.deltaTime;
+    }
+
+    void Attack(Collider hit, int damage)
+    {
+        HealthManager HM = hit.GetComponent<HealthManager>();
+        if (HM != null)
+        {
+            HM.TakeDamage(damage);
         }
     }
 }

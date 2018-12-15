@@ -15,5 +15,14 @@ public class Base_FSM : StateMachineBehaviour
         Enemy = animator.gameObject.transform.GetComponentInParent<Enemy_AI>().gameObject;
         player = Enemy.GetComponent<Enemy_AI>().GetPlayer();
         AI = Enemy.GetComponent<Enemy_AI>();
+        OnStateUpdate(animator, stateInfo, layerIndex);
+    }
+
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, UnityEngine.Animations.AnimatorControllerPlayable controller)
+    {
+        if (player == null)
+        {
+            return;
+        }
     }
 }
