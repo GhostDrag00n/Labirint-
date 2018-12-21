@@ -51,14 +51,16 @@ public class Enemy_AI : MonoBehaviour {
         if (Player == null)
         {
             anim.SetFloat("Distance", 1000f);
-            return;
+        }
+        else
+        {
+            anim.SetFloat("Distance", Vector3.Distance(this.transform.position, Player.transform.position));
         }
         if (HM.Health <= 0)
         {
             Die();
+            return;
         }
-
-        anim.SetFloat("Distance", Vector3.Distance(this.transform.position, Player.transform.position));
 
         //MoveTo(cyl.transform.position);
 
@@ -122,5 +124,7 @@ public class Enemy_AI : MonoBehaviour {
     {
         GetComponent<Animator>().SetBool("DeathTrigger", true);
         Debug.Log("AI dead");
+        //Play death particle
+        Destroy(this.gameObject);
     }
 }

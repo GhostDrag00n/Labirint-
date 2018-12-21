@@ -13,7 +13,6 @@ public class Chasing : Base_FSM
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) 
     {
-        Enemy.GetComponent<Enemy_AI>().MoveTo(player.transform.position);
 
         if (animator.GetFloat("Distance") < AI.AttackingRadius)
         {
@@ -22,6 +21,15 @@ public class Chasing : Base_FSM
         if (animator.GetFloat("Distance") > AI.LookingRadius)
         {
             animator.SetBool("PlayerFound", false);
+        }
+
+        if (player == null)
+        {
+            return;
+        }
+        else
+        {
+            Enemy.GetComponent<Enemy_AI>().MoveTo(player.transform.position);
         }
     }
 

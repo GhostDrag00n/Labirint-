@@ -1,14 +1,21 @@
 fileFormatVersion: 2
-guid: 9a45dafbf057a46e0933d3913667db72
+guid: c38c54bc03d6d4b2e9d3c2fe57c2a859
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Plpl_001
     400000: //RootNode
-    2100000: lambert1
+    400002: Plpl_001
+    2100000: unnamed
     2300000: //RootNode
+    2300002: Plpl_001
     3300000: //RootNode
-    4300000: pCube1
+    3300002: Plpl_001
+    4300000: Plpl
+    4300002: Plpl_001
+    7400000: Default Take
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -59,9 +66,9 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -86,7 +93,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

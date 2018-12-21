@@ -31,7 +31,7 @@ public abstract class Interactable : MonoBehaviour{
 
     private void OnTriggerStay(Collider hit)
     {
-        if (hit.tag == "Player" && isActivated == false)
+        if (hit.tag == "PlayerActivation" && isActivated == false)
         {
             AssignActButton();
         }
@@ -39,7 +39,7 @@ public abstract class Interactable : MonoBehaviour{
 
     private void OnTriggerExit(Collider hit)
     {
-        if (hit.tag == "Player")
+        if (hit.tag == "PlayerActivation")
         {
             //DeActivate();
             //ActivateButton.onClick.AddListener(DeActivate);

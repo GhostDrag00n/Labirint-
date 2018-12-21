@@ -10,19 +10,16 @@ public class AttackCube : MonoBehaviour
 
     private void OnTriggerEnter(Collider hit)
     {
-        HM = hit.GetComponent<HealthManager>();
-        
-        if (HM != null)
+        if (hit.GetComponent<HealthManager>() != null)
         {
+            HM = hit.GetComponent<HealthManager>();
             CanAttack = true;
         }
     }
 
     private void OnTriggerExit(Collider hit)
     {
-        HM = hit.GetComponent<HealthManager>();
-
-        if (HM != null)
+        if (hit.GetComponent<HealthManager>() != null)
         {
             HM = null;
             CanAttack = false;

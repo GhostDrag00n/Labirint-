@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    public static PlayerController instance;
-
 #region
     public float AttackRate;
     public int Damage;
@@ -18,6 +16,9 @@ public class PlayerController : MonoBehaviour
     public HealthManager HM;
 
     public Button AttackButton;
+    public Button CrouchButton;
+
+    public bool HoldToCrouch;
 
     public AttackCube AC;
 
@@ -34,7 +35,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Debug.Log(HM.Health);
+            HM.Health += 40;
+            HM.HealthImage.fillAmount += 40f/HM.StartHealth;
+            HM.HealthSlider.fillAmount += 40f/HM.StartHealth;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Attack();
         }
         if (HM.Health <= 0)
         {
@@ -46,6 +53,8 @@ public class PlayerController : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("DeathTrigger", true);
         Debug.Log("Player dead");
+        Destroy(this.gameObject);
+
     }
 
     public void Attack()
@@ -59,5 +68,10 @@ public class PlayerController : MonoBehaviour
                 AC.HM.TakeDamage(Damage);
             }
         }
+    }
+
+    public void Crouch()
+    {
+        
     }
 }

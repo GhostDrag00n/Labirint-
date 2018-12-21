@@ -14,14 +14,15 @@ public class Partolling : Base_FSM
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        AI.MoveTo(AI.Home.transform.position);
-        //Patrolling
-
 
         if (animator.GetFloat("Distance") < AI.LookingRadius)
         {
-            animator.SetBool("PlayerFound", true);       
+            animator.SetBool("PlayerFound", true);
         }
+
+        AI.MoveTo(AI.Home.transform.position);
+        //Patrolling
+
     }
 
 

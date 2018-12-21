@@ -5,11 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
-  - PlayerBody
   - ActivateButton
   - Heavy
   - Deaggable
   - AI
+  - PlayerActivation
   layers:
   - Default
   - TransparentFX

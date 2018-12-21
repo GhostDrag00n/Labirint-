@@ -15,10 +15,17 @@ public class Attacking : Base_FSM {
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
         if (animator.GetFloat("Distance") > AI.AttackingRadius)
         {
             animator.SetBool("Attacking", false);
         }
+
+        if (player == null)
+        {
+            return;
+        }
+
         if (timer <= 0)
         {
             timer = attackRate;

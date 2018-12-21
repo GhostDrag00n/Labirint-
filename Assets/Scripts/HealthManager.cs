@@ -42,4 +42,10 @@ public class HealthManager : MonoBehaviour {
         HealthImage.fillAmount -= (float)damage / (float)StartHealth;
         isLerping = true;
     }
+
+    private void OnDestroy()
+    {
+        if (HealthSlider != null)
+            HealthSlider.fillAmount = Mathf.Lerp(HealthSlider.fillAmount, HealthImage.fillAmount, Mathf.Infinity * Time.deltaTime);
+    }
 }
