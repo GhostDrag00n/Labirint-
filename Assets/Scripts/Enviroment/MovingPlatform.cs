@@ -14,6 +14,7 @@ public class MovingPlatform : MonoBehaviour {
     public float WaitingTime;
     Vector3 dir;
     float speed;
+    bool waiting = false;
 
     private void Start()
     {
@@ -21,29 +22,36 @@ public class MovingPlatform : MonoBehaviour {
         speed = MovingSpeed;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         float distance = Vector3.Distance(this.transform.position, positions[PositionCount].transform.position);
         //dir = positions[PositionCount].transform.position - transform.position;
-        bool waiting = false;
+
 
         if (!waiting)
             transform.Translate(dir * speed * Time.deltaTime);
 
         if (distance < stoppingDistance)
         {
-            //waiting = true
+            waiting = true;
             StartCoroutine(NextPoint(WaitingTime));
+            PositionCount++;
+            if (PositionCount == positions.Count)
+            {
+                PositionCount = 0;
+            }
+            dir = positions[PositionCount].transform.position - transform.position;
         }
-
-        if (distance < slowingDistance)
+        else
         {
-            speed = slowingSpeed;
-        }
-
-        if (distance > slowingDistance)
-        {
-            speed = MovingSpeed;
+            if (distance < slowingDistance)
+            {
+                speed = slowingSpeed;
+            }
+            else
+            {
+                speed = MovingSpeed;
+            }
         }
 
     }
@@ -51,12 +59,8 @@ public class MovingPlatform : MonoBehaviour {
     IEnumerator NextPoint(float time)
     {
         yield return new WaitForSeconds(time);
-        PositionCount++;
-        if (PositionCount == positions.Count)
-        {
-            PositionCount = 0;
-        }
-        dir = positions[PositionCount].transform.position - transform.position;
+        waiting = false;
+
 
     }
 

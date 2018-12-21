@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ParentingObjects : MonoBehaviour {
 
-    public string[] tags;
+    public List<string> tags;
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (tag.Contains(hit.tag))
+        if (tags.Contains(hit.tag))
             hit.transform.parent = this.transform;
     }
 
     private void OnTriggerExit(Collider hit)
     {
-        if (tag.Contains(hit.tag))
+        if (tags.Contains(hit.tag))
             hit.transform.parent = null;
     }
 }

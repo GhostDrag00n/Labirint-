@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour {
     public float smoothSpeed = .125f;
     public Vector3 offset;
 
-    void FixedUpdate () 
+    void FixedUpdate()
     {
         UpdateCameraPosition();
     }
