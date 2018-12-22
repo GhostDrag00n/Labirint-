@@ -9,47 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1053518658803310}
+  m_RootGameObject: {fileID: 1370470614502736}
   m_IsPrefabAsset: 1
---- !u!1 &1053518658803310
+--- !u!1 &1370470614502736
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4629826685766714}
-  - component: {fileID: 33948275348554764}
-  - component: {fileID: 23335734874830184}
-  - component: {fileID: 65640387219547388}
-  - component: {fileID: 114437902674114558}
-  - component: {fileID: 135914016904806872}
+  - component: {fileID: 4664509735703076}
+  - component: {fileID: 33965571897884226}
+  - component: {fileID: 23813749639958056}
+  - component: {fileID: 135687806579756188}
+  - component: {fileID: 114587101879659402}
   m_Layer: 0
-  m_Name: NPC
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4629826685766714
+--- !u!4 &4664509735703076
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053518658803310}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.69, y: 1.66, z: 3.02}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_GameObject: {fileID: 1370470614502736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -105.44, y: 2.61, z: 18.86}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23335734874830184
+--- !u!23 &23813749639958056
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053518658803310}
+  m_GameObject: {fileID: 1370470614502736}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +58,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 288c9e2d3db9d4664ac9ff3d408637c0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,54 +78,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33948275348554764
+--- !u!33 &33965571897884226
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053518658803310}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65640387219547388
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053518658803310}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114437902674114558
+  m_GameObject: {fileID: 1370470614502736}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114587101879659402
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053518658803310}
+  m_GameObject: {fileID: 1370470614502736}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b28cfbe1011644fce8358b27589b69f5, type: 3}
+  m_Script: {fileID: 11500000, guid: a9a36cc5476f04a63bdd1ae300a7d471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActivateButton: {fileID: 0}
-  DM: {fileID: 0}
-  dialogue:
-    name: NPC_Name
-    sentences:
-    - Fuck
-    - This
-    - Shit
-  DialogueContinue: {fileID: 0}
---- !u!135 &135914016904806872
+  ProjectileSpeed: 20
+  turningSpeed: 20
+  damage: 20
+  player: {fileID: 0}
+--- !u!135 &135687806579756188
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1053518658803310}
+  m_GameObject: {fileID: 1370470614502736}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.09
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

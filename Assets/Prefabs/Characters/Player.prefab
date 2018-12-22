@@ -2578,6 +2578,8 @@ MonoBehaviour:
   PickedUpItems: 
   HM: {fileID: 114304466326715510}
   AttackButton: {fileID: 0}
+  CrouchButton: {fileID: 0}
+  HoldToCrouch: 0
   AC: {fileID: 114440403848746086}
 --- !u!114 &114120354311824558
 MonoBehaviour:
