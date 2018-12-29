@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour {
 
+	[HideInInspector]
+	public bool isTrapActive;
+
     public bool isSafe;
     public int damage;
-    public float TimeBetweenAttacks;
     public Animator animator;
+    public float TimeBetweenAttacks;
 
     float timer;
 
+    private void Update()
+    {
+        timer += Time.deltaTime;
+    }
+
     private void OnTriggerEnter(Collider hit)
     {
-        if (animator.GetBool("isActive") == false)
+        if ((!isTrapActive || !isSafe) && (hit.tag == "Player" || hit.tag == "AI"))
         {
-            animator.SetBool("isActive", true);
             Attack(hit, damage);
-        }
-        if (animator.GetBool("isActive") == true)
-        {
-            animator.SetBool("isActive", false);
-            animator.SetBool("isActive", true);
-            Attack(hit, damage);
+            timer = 0;
         }
     }
 
@@ -30,10 +32,18 @@ public class Trap : MonoBehaviour {
     {
         if (timer >= TimeBetweenAttacks)
         {
-            timer = 0f;
-            Attack(hit, damage);
+            if ((!isTrapActive || !isSafe) && (hit.tag == "Player" || hit.tag == "AI"))
+            {
+                Attack(hit, damage);
+                timer = 0;
+                print("Timer reset");
+            }
         }
-        timer += Time.deltaTime;
+    }
+
+    private void OnTriggerExit(Collider hit)
+    {
+        
     }
 
     void Attack(Collider hit, int damage)
@@ -42,6 +52,10 @@ public class Trap : MonoBehaviour {
         if (HM != null)
         {
             HM.TakeDamage(damage);
+        }
+        else
+        {
+            print("HM is null");
         }
     }
 }

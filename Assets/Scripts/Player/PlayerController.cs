@@ -35,9 +35,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            HM.Health += 40;
-            HM.HealthImage.fillAmount += 40f/HM.StartHealth;
-            HM.HealthSlider.fillAmount += 40f/HM.StartHealth;
+            //HM.TakeDamage(-200);
+            HM.Health += 100;
+            HM.HealthImage.fillAmount += 100f/HM.StartHealth;
+            HM.HealthSlider.fillAmount += 100f/HM.StartHealth;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -25,11 +25,6 @@ public class DialogueTrigger : Interactable
         {
             dialogueEnd = !dialogueEnd;
             ActivateButton.gameObject.SetActive(true);
-            //Debug.Log(ActivateButton.onClick.GetPersistentEventCount());
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Debug.Log(DM.currentDialogue.name);
         }
     }
 

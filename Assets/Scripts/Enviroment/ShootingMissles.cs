@@ -7,6 +7,7 @@ public class ShootingMissles : MonoBehaviour {
     public GameObject player;
     public GameObject projectile;
     public GameObject ShootFrom;
+    public GameObject particle;
     public float projectileSpeed;
     public float AttackRadius;
     public float attackRate;
@@ -21,7 +22,7 @@ public class ShootingMissles : MonoBehaviour {
 	void Update () {
         timer += Time.deltaTime;
 
-        if (timer >= attackRate)
+        if (timer >= attackRate && player != null)
         {
             timer = 0f;
             if (Vector3.Distance(transform.position, player.transform.position) < AttackRadius)
@@ -31,6 +32,7 @@ public class ShootingMissles : MonoBehaviour {
                 mi.player = player;
                 mi.ProjectileSpeed = projectileSpeed;
                 mi.damage = damage;
+                mi.particle = particle;
             }
         }
 	}

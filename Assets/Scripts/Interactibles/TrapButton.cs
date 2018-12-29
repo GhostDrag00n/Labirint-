@@ -39,6 +39,7 @@ public class TrapButton : Interactable
         foreach(GameObject go in traps)
         {
             go.GetComponent<Animator>().SetBool("isActive", false);
+            //go.GetComponent<Trap>().isTrapActive = true;
         }
     }
 

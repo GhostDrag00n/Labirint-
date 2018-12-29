@@ -11,6 +11,7 @@ public abstract class Interactable : MonoBehaviour{
 
     public abstract void DeActivate();
 
+    [HideInInspector]
     public bool isActivated = false;
 
     private void Start()
