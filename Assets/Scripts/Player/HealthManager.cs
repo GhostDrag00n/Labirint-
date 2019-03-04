@@ -27,7 +27,7 @@ public class HealthManager : MonoBehaviour {
         if (isLerping)
         {
             HealthSlider.fillAmount = Mathf.Lerp(HealthSlider.fillAmount, HealthImage.fillAmount, SliderSmoothnes * Time.deltaTime);
-            if ((HealthSlider.fillAmount - HealthImage.fillAmount) < Mathf.Epsilon)
+            if (Mathf.Abs(HealthSlider.fillAmount - HealthImage.fillAmount) < Mathf.Epsilon)
             {
                 isLerping = false;
             }
@@ -47,6 +47,7 @@ public class HealthManager : MonoBehaviour {
     {
         Health += healAmount;
         HealthImage.fillAmount += (float)healAmount / (float)StartHealth;
+        HealthSlider.fillAmount += (float)healAmount / (float)StartHealth;
         isLerping = true;
     }
 

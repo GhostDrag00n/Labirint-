@@ -48,12 +48,12 @@ public class NewTrap : MonoBehaviour {
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.GetComponent<HealthManager>() != null)
+        if (hit.tag.Equals("Player"))
         {
-			Debug.Log(hit.gameObject.name);
-            if (secondTimer >= TimeBetweenTakingDamage && active)
+            Debug.Log(hit.GetComponent<HealthManager>().GetInstanceID());
+			dealDamage = true;
+            if (active)
             {
-				dealDamage = true;
                 hit.GetComponent<HealthManager>().TakeDamage(damage);
                 Debug.Log("Dealing damage on enter");
                 secondTimer = 0;
@@ -63,7 +63,7 @@ public class NewTrap : MonoBehaviour {
 
     private void OnTriggerStay(Collider hit)
     {
-        if (hit.GetComponent<HealthManager>() != null)
+        if (hit.tag.Equals("Player"))
         {
             if (secondTimer >= TimeBetweenTakingDamage && active && dealDamage)
             {
