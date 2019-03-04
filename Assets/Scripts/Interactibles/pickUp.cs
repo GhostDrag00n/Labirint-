@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class pickUp : Interactable
 {
-    public PlayerController PC;
     public Item item;
 
     private void Start()
     {
-        PC = FindObjectOfType<PlayerController>();
-        this.GetComponent<MeshRenderer>().material = item.renderMaterial;
+        if (item.renderMaterial != null)
+            this.GetComponent<MeshRenderer>().material = item.renderMaterial;
     }
 
     public override void Activate()
     {
-        PC.PickedUpItems.Add(item.id);
+        if (Inventory.instance != null)
+        {
+            Inventory.instance.Add(item);
+        }
+        //PlayerController.instance.Inventory.Add(item.id);
         Destroy(this.gameObject);
     }   
 

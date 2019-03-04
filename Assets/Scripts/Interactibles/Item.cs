@@ -1,13 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Item", menuName = "Dialogues/PickableItems", order = 1)]
-public class Item : ScriptableObject {
+[CreateAssetMenu(fileName = "Item", menuName = "Item", order = 1)]
+public class Item : ScriptableObject
+{
 
-    public Image ico;
+    public Sprite icon;
+    public Sprite ItemImage;
     public new string name;
-    public int id;
     public Material renderMaterial;
+    public string Desctiption = "adsf";
+    public bool usable;
+    public int price;
+
+    public enum UsableType
+    {
+        Equipable,
+        Note,
+        HealthPotion,
+        AttackPotion,
+        DefencePotion,
+    }
+    public UsableType Type;
+
+    public void HealthPotion()
+    {
+        PlayerController.instance.HM.Heal(100);
+        Inventory.instance.Delete(this);
+    }
 }

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c956328a4114ed0a7cb37fea3f5a64, type: 3}
   m_Name: WindStone
   m_EditorClassIdentifier: 
-  ico: {fileID: 0}
+  ico: {fileID: 21300000, guid: 5485e2f56028a3c4cb54f5caa167377e, type: 3}
   name: Stone
   id: 2
   renderMaterial: {fileID: 2100000, guid: 118fe5598f0f64045b7b55fc48eb64b9, type: 2}

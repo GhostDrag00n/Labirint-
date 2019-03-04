@@ -7,6 +7,9 @@ public class Trap : MonoBehaviour {
 	[HideInInspector]
 	public bool isTrapActive;
 
+    public bool isSimple;
+    public float time;
+
     public bool isSafe;
     public int damage;
     public Animator animator;

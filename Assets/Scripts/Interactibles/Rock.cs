@@ -14,9 +14,9 @@ public class Rock : Interactable {
 
     public override void Activate()
     {
-        if (player.PickedUpItems.Contains(reqiredItem.id))
+        if (Inventory.instance.Exist(reqiredItem))
         {
-            player.PickedUpItems.Remove(reqiredItem.id);
+            Inventory.instance.Delete(reqiredItem);
             DestroyRock();
         }
     }
@@ -29,7 +29,7 @@ public class Rock : Interactable {
     void DestroyRock()
     {
         Destroy(GetComponent<SphereCollider>());
-        //Make some fancy destroy
+        //Make some fancy destruction
         Destroy(this.gameObject);
     }
 }

@@ -14,12 +14,11 @@ public class Dialogue : ScriptableObject{
     }
 
     public Dialogue nextDialogue;
-    public Dialogue LoopDialogue;
     //public Dialogue previousDialogue;
 
 	public new string name;
     public NodeType type;
-    public int reqiredItemId;
+    public Item reqiredItem;
 
 	[TextArea(3, 10)]
 	public string[] sentences;

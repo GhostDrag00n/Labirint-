@@ -44,14 +44,8 @@ public class MovingPlatform : MonoBehaviour {
         }
         else
         {
-            if (distance < slowingDistance)
-            {
-                speed = slowingSpeed;
-            }
-            else
-            {
-                speed = MovingSpeed;
-            }
+            speed = distance < slowingDistance ? slowingSpeed : MovingSpeed;
+
         }
 
     }

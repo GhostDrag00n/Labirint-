@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
+    public static PlayerController instance;
+
+
 #region
     public float AttackRate;
     public int Damage;
 #endregion
 
-    public List<int> PickedUpItems;
-
     public HealthManager HM;
+    public CoinManager   CM;
 
     public Button AttackButton;
     public Button CrouchButton;
@@ -24,9 +26,21 @@ public class PlayerController : MonoBehaviour
 
     float timer;
 
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More that one player");
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
     private void Start()
     {
-        PickedUpItems = new List<int>();
+        
     }
 
     private void Update()
@@ -36,9 +50,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             //HM.TakeDamage(-200);
-            HM.Health += 100;
-            HM.HealthImage.fillAmount += 100f/HM.StartHealth;
-            HM.HealthSlider.fillAmount += 100f/HM.StartHealth;
+            HM.Heal(100);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -49,6 +61,7 @@ public class PlayerController : MonoBehaviour
             Die();
         }
     }
+   
 
     void Die()
     {
@@ -69,10 +82,5 @@ public class PlayerController : MonoBehaviour
                 AC.HM.TakeDamage(Damage);
             }
         }
-    }
-
-    public void Crouch()
-    {
-        
     }
 }

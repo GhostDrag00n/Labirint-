@@ -11,7 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c956328a4114ed0a7cb37fea3f5a64, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  ico: {fileID: 0}
+  ico: {fileID: 21300000, guid: 3d8675433a508ec47b8f895201eacf20, type: 3}
+  ItemImage: {fileID: 21300000, guid: 827c9cd4a3943534f909ac6473e17288, type: 3}
   name: Stone
   id: 1
   renderMaterial: {fileID: 2100000, guid: ba43135371871544599a0c669dbc73be, type: 3}
+  Desctiption: adsfaasd

@@ -5,6 +5,7 @@ public abstract class Interactable : MonoBehaviour{
 
     public Button ActivateButton;
 
+    [HideInInspector]
     public abstract void Activate();
 
     //public abstract void StayActivate();

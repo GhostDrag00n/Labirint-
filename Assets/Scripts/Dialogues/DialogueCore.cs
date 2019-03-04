@@ -9,7 +9,7 @@ public class DialogueCore : MonoBehaviour {
     public TextMeshProUGUI nameText;
 	public TextMeshProUGUI dialogueText;
     public GameObject DialogueContinue;
-    public GameObject[] UIElementsToDisable;
+    public List<GameObject> UIElementsToDisable;
     public bool isDialogueEnded;
     public bool isDialoguePlaying;
     public Button[] choises;
@@ -22,8 +22,8 @@ public class DialogueCore : MonoBehaviour {
     {
         isDialogueEnded = false;
         sentences = new Queue<string>();
-        UIElementsToEnable = new bool[UIElementsToDisable.Length];
-        for (int i = 0; i < UIElementsToDisable.Length; i++)
+        UIElementsToEnable = new bool[UIElementsToDisable.Count];
+        for (int i = 0; i < UIElementsToDisable.Count; i++)
         {
             UIElementsToEnable[i] = UIElementsToDisable[i].activeSelf;
         }
@@ -51,6 +51,7 @@ public class DialogueCore : MonoBehaviour {
 			sentences.Enqueue(sentence);
 		}
 
+        DialogueContinue.SetActive(false);
 		DisplayNextSentence();
 	}
 
@@ -61,8 +62,14 @@ public class DialogueCore : MonoBehaviour {
 			EndDialogue();
 			return;
 		}
-
 		string sentence = sentences.Dequeue();
+        if (!isDialogueEnded)
+        {
+            StopAllCoroutines();
+            dialogueText.text = "";
+            dialogueText.text = sentence;
+            Debug.Log(sentence);
+        }
 		StopAllCoroutines();
 		StartCoroutine(TypeSentence(sentence));
 	}
@@ -75,6 +82,7 @@ public class DialogueCore : MonoBehaviour {
 			dialogueText.text += letter;
 			yield return null;
 		}
+        DialogueContinue.SetActive(true);
 	}
 
 	void EndDialogue()
@@ -83,7 +91,7 @@ public class DialogueCore : MonoBehaviour {
         nameText.text = "";
         dialogueText.text = "";
         //Debug.Log("Dialogude end");
-        for (int i = 0; i < UIElementsToDisable.Length; i++)
+        for (int i = 0; i < UIElementsToDisable.Count; i++)
         {
             if (UIElementsToEnable[i] == true)
             {

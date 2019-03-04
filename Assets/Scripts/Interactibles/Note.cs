@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 
 public class Note : Interactable {
-
-    public Sprite image;
+    
     public GameObject ImageHandeler;
     public GameObject CloseButton;
+    public Item noteItem;
     private bool isImageAcitve;
 
     private void Start()
@@ -17,9 +17,9 @@ public class Note : Interactable {
     {
         isImageAcitve = !isImageAcitve;
         ImageHandeler.SetActive(true);
-        ImageHandeler.GetComponent<Image>().sprite = image;
+        ImageHandeler.GetComponent<Image>().sprite = noteItem.ItemImage;
         CloseButton.SetActive(true);
-        CloseButton.GetComponent<Button>().onClick.AddListener(HideImage);
+        CloseButton.GetComponent<Button>().onClick.AddListener(AddItemOnCLosing);
         ActivateButton.gameObject.SetActive(false);
     }
 
@@ -38,6 +38,15 @@ public class Note : Interactable {
         CloseButton.GetComponent<Button>().onClick.RemoveAllListeners();
         CloseButton.SetActive(false);
         ActivateButton.gameObject.SetActive(true);
+    }
+
+    public void AddItemOnCLosing()
+    {
+        if (Inventory.instance.Add(noteItem))
+        {
+            Destroy(this.gameObject);
+        }
+        HideImage();
     }
 
 }

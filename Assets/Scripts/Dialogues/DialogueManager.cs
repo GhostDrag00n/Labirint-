@@ -10,7 +10,6 @@ public class DialogueManager : MonoBehaviour
     public GameObject player;
     public Dialogue currentDialogue;
     private Dialogue nextDialogue;
-    private Dialogue LoopDialogue;
     [HideInInspector]
     public Dialogue LoopStart;
     //private int dialogueIndex;
@@ -18,7 +17,6 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        pc = player.GetComponent<PlayerController>();
         nextDialogue = currentDialogue;
         //dialogueIndex = 0;
     }
@@ -27,7 +25,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (currentDialogue.type == Dialogue.NodeType.ContinuesDialogue)
         {
-            Debug.Log("I am here");
+            Debug.Log("Continues Dialogue");
             //nextDialogue = currentDialogue.nextDialogue;
             currentDialogue = nextDialogue.nextDialogue;
             nextDialogue = currentDialogue;
@@ -35,7 +33,7 @@ public class DialogueManager : MonoBehaviour
         }
         else if (currentDialogue.type == Dialogue.NodeType.ItemReqired)
         {
-            if (pc.PickedUpItems.Contains(currentDialogue.reqiredItemId))
+            if (Inventory.instance.Exist(currentDialogue.reqiredItem))
             {
                 currentDialogue = nextDialogue.nextDialogue;
                 nextDialogue = currentDialogue;
@@ -46,7 +44,7 @@ public class DialogueManager : MonoBehaviour
             {
                 //LoopDialogue = currentDialogue.LoopDialogue;
                 //nextDialogue = currentDialogue.LoopDialogue;
-                currentDialogue = currentDialogue.LoopDialogue;
+                //currentDialogue = currentDialogue.LoopDialogue;
                 LoopStart = currentDialogue;
                 nextDialogue = currentDialogue;
                 return currentDialogue;

@@ -43,6 +43,13 @@ public class HealthManager : MonoBehaviour {
         isLerping = true;
     }
 
+    public void Heal(int healAmount)
+    {
+        Health += healAmount;
+        HealthImage.fillAmount += (float)healAmount / (float)StartHealth;
+        isLerping = true;
+    }
+
     private void OnDestroy()
     {
         if (HealthSlider != null)
