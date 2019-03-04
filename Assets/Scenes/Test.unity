@@ -3143,6 +3143,11 @@ Transform:
   m_Father: {fileID: 1923720614}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &567658024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1017069821486786, guid: 8e1421019b6cd468aa3bd98222cd10d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1728309178}
 --- !u!1 &574464978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4655,6 +4660,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 692177978}
   m_CullTransparentMesh: 0
+--- !u!114 &701274026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114926578755871726, guid: 8e1421019b6cd468aa3bd98222cd10d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1728309178}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 --- !u!1 &702298841
 GameObject:
   m_ObjectHideFlags: 0
@@ -6925,7 +6936,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4310402507454504, guid: 6a8fbcd4cbb834f89900183adee4c1c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: -18.36
       objectReference: {fileID: 0}
     - target: {fileID: 4310402507454504, guid: 6a8fbcd4cbb834f89900183adee4c1c1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6933,7 +6944,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4310402507454504, guid: 6a8fbcd4cbb834f89900183adee4c1c1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.11
+      value: -9.87
       objectReference: {fileID: 0}
     - target: {fileID: 4310402507454504, guid: 6a8fbcd4cbb834f89900183adee4c1c1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11129,6 +11140,12 @@ Transform:
   m_Father: {fileID: 1136960815}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1534353914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114532700076946534, guid: 8e1421019b6cd468aa3bd98222cd10d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1728309178}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 --- !u!1 &1535151167
 GameObject:
   m_ObjectHideFlags: 0
@@ -13384,10 +13401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124208892b0cd40c2ad89e5b7aba0ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  dialogueText: {fileID: 0}
-  DialogueContinue: {fileID: 0}
-  UIElementsToDisable: []
+  nameText: {fileID: 1534353914}
+  dialogueText: {fileID: 701274026}
+  DialogueContinue: {fileID: 567658024}
+  UIElementsToDisable:
+  - {fileID: 662922237}
+  - {fileID: 826213624}
   isDialogueEnded: 0
   isDialoguePlaying: 0
   choises: []

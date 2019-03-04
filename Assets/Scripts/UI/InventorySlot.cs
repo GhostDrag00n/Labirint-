@@ -6,7 +6,6 @@ public class InventorySlot : MonoBehaviour
 {
     public Color activeColor;
     public Image icon;
-    public TextMeshProUGUI count;
     public GameObject CurrentItemImg;
     public GameObject ItemDescription;
     public GameObject UseButton;
