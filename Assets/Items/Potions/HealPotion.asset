@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c956328a4114ed0a7cb37fea3f5a64, type: 3}
   m_Name: HealPotion
   m_EditorClassIdentifier: 
-  ico: {fileID: 21300000, guid: 0c6271a290ef75b4c97d58746c86c5b8, type: 3}
+  icon: {fileID: 0}
   ItemImage: {fileID: 21300000, guid: 9d7c6e4896067aa4fa512a00f692ac1c, type: 3}
   name: Heal Potion
-  id: 0
   renderMaterial: {fileID: 2100000, guid: e6b9b44320f4448d9d5e0ee634259966, type: 2}
   Desctiption: Heals Player
   usable: 1
+  price: 0
+  Type: 2

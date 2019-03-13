@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour {
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.tag.Equals("Player"))
+        if (hit.tag.Equals("PlayerActivation"))
         {
             PlayerController.instance.CM.Add(Money);
             Destroy(this.gameObject);

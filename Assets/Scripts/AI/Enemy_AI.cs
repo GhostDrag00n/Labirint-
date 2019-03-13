@@ -1,28 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Enemy_AI : MonoBehaviour {
 
-    public Enemy_SO enemyStats;
+    [HideInInspector] public int currentWaypoint;
 
+    public Enemy_SO enemyStats;
     public Animator anim;
     public GameObject Player;
     public GameObject Home;
     public AttackCube AC;
-
-    [HideInInspector]
-    public float PatrollinRadius, LookingRadius, AttackingRadius, attackRate;
-
-    [HideInInspector]
-    public int Enemy_AT, Enemy_HP;
-
-    public GameObject cyl;
-
+    [HideInInspector] public float PatrollinRadius, LookingRadius, AttackingRadius, attackRate;
+    [HideInInspector] public int Enemy_AT, Enemy_HP;
+    public Transform[] Waypoints;
     public NavMeshAgent agent;
-
     public ThirdPersonCharacter character;
-
     public HealthManager HM;
 
 
@@ -31,6 +25,7 @@ public class Enemy_AI : MonoBehaviour {
 
     private void Start()
     {
+        currentWaypoint = 0;
         PatrollinRadius = enemyStats.PatrollingRadius;
         LookingRadius = enemyStats.LookingRadius;
         AttackingRadius = enemyStats.AttackingRadius;
@@ -94,7 +89,6 @@ public class Enemy_AI : MonoBehaviour {
     public void MoveTo(Vector3 position)
     {
         agent.SetDestination(position);
-        cyl.transform.position = position;
     }
 
     public void Attack()
@@ -109,6 +103,17 @@ public class Enemy_AI : MonoBehaviour {
             }
         }
         //Debug.Log("Attacked");
+    }
+
+    public void WaitFor(float seconds)
+    {
+        
+    }
+
+    IEnumerator Wait(float seconds, bool w)
+    {
+        yield return new WaitForSeconds(seconds);
+        w = true;
     }
 
     void OnDrawGizmosSelected()

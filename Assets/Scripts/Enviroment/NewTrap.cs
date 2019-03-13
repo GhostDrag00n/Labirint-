@@ -48,7 +48,7 @@ public class NewTrap : MonoBehaviour {
 
     private void OnTriggerEnter(Collider hit)
     {
-        if (hit.tag.Equals("Player"))
+        if (hit.GetComponent<HealthManager>() != null)
         {
             Debug.Log(hit.GetComponent<HealthManager>().GetInstanceID());
 			dealDamage = true;
@@ -63,7 +63,7 @@ public class NewTrap : MonoBehaviour {
 
     private void OnTriggerStay(Collider hit)
     {
-        if (hit.tag.Equals("Player"))
+        if (hit.GetComponent<HealthManager>() != null)
         {
             if (secondTimer >= TimeBetweenTakingDamage && active && dealDamage)
             {

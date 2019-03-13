@@ -9,15 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75c956328a4114ed0a7cb37fea3f5a64, type: 3}
-  m_Name: Sword
+  m_Name: Sword 1
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 31b5f9b9e449e47b68919cff1a759e9b, type: 3}
-  ItemImage: {fileID: 21300000, guid: 49b611e658efbf443b686a4036f74fe3, type: 3}
-  name: Sword
-  id: 0
+  icon: {fileID: 21300000, guid: a94c9a7eb94ceec4a8d67a1890e22e51, type: 3}
+  ItemImage: {fileID: 21300000, guid: 9866a92691696b346901281f2b329034, type: 3}
+  name: Sword II
   renderMaterial: {fileID: 2100000, guid: 8f8e7a3132a31485fa2fa6ffc03bbfa8, type: 3}
-  Desctiption: Sword
+  Desctiption: Sword 2
   usable: 0
-  CoinIcon: {fileID: 0}
-  price: 200
+  price: 400
   Type: 0

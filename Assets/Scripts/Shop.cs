@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour {
 
     public GameObject ShopUI;
-    public GameObject items;
+    public GameObject ShopItemsUI;
     public Item[] shopItems;
     public GameObject ShopItemPrefab;
 
@@ -14,7 +14,7 @@ public class Shop : MonoBehaviour {
         foreach (Item item in shopItems)
         {
             print(item.name);
-            GameObject CurrentItem = Instantiate(ShopItemPrefab, parent:items.transform);
+            GameObject CurrentItem = Instantiate(ShopItemPrefab, parent:ShopItemsUI.transform);
             CurrentItem.GetComponent<ShopItemUI>().ShopDisplay(item.icon, item.name, item.price);
         }
     }

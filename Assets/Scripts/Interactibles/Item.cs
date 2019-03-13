@@ -21,6 +21,7 @@ public class Item : ScriptableObject
         AttackPotion,
         DefencePotion,
     }
+
     public UsableType Type;
 
     public void HealthPotion()

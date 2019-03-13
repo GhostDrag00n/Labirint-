@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad956b1f4b50d4f68895255ee3c22e29, type: 3}
   m_Name: EnemyStat
   m_EditorClassIdentifier: 
-  LookingRadius: 3
+  LookingRadius: 2
   AttackingRadius: 1
-  PatrollingRadius: 4
+  PatrollingRadius: 5
   Enemy_HP: 100
   Enemy_AT: 50
   AttackRate: 1
