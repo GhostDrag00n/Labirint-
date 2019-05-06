@@ -5,7 +5,13 @@ using TMPro;
 public class CoinManager : MonoBehaviour {
 
     public TextMeshProUGUI UIcoins;
+    public int startingMoney;
     private int money;
+
+    private void Start()
+    {
+        money = startingMoney;
+    }
 
     public int GetMoney()
     {
@@ -17,6 +23,7 @@ public class CoinManager : MonoBehaviour {
         money += amount;
         UIcoins.text = money.ToString();
     }
+
     public int Substract(int amount)
     {
         if (money - amount >= 0)

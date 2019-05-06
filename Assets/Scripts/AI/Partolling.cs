@@ -30,7 +30,6 @@ public class Partolling : Base_FSM
         {
             isWaiting = true;
             WaitFor(3f);
-            Debug.Log("Waiting");
             if (!isWaiting)
             {
                 if (AI.currentWaypoint + 1 < AI.Waypoints.Length)
@@ -63,7 +62,6 @@ public class Partolling : Base_FSM
 
     void WaitFor(float seconds)
     {
-        Debug.Log(t);
         if (t >= seconds)
         {
             isWaiting = false;

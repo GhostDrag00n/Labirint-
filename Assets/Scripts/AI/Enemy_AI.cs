@@ -88,7 +88,10 @@ public class Enemy_AI : MonoBehaviour {
 
     public void MoveTo(Vector3 position)
     {
-        agent.SetDestination(position);
+        if (GetComponent<Animator>().GetBool("DeathTrigger") != false)
+        {
+            agent.SetDestination(position);
+        }
     }
 
     public void Attack()
@@ -105,17 +108,6 @@ public class Enemy_AI : MonoBehaviour {
         //Debug.Log("Attacked");
     }
 
-    public void WaitFor(float seconds)
-    {
-        
-    }
-
-    IEnumerator Wait(float seconds, bool w)
-    {
-        yield return new WaitForSeconds(seconds);
-        w = true;
-    }
-
     void OnDrawGizmosSelected()
     {
         // Draw a yellow sphere at the transform's position
@@ -130,6 +122,10 @@ public class Enemy_AI : MonoBehaviour {
         GetComponent<Animator>().SetBool("DeathTrigger", true);
         Debug.Log("AI dead");
         //Play death particle
-        Destroy(this.gameObject);
+        Destroy(this.gameObject, 30f);
     }
+
+
+
+
 }
